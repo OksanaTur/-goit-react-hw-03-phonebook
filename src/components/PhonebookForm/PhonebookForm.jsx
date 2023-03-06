@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Formik, Field } from 'formik';
-import { nanoid } from 'nanoid';
 import propTypes from 'prop-types';
 import { FormInput, FormBtn, Form } from './Phonebook.styled';
 
 
+const initialValues = { name: '', number: '' };
 
-export class PhonebookForm extends Component {
-    handleSubmit = ({ name, number }, { resetForm }) => {
-        const nameInContacts = this.props.contacts.find(
-            contact => contact.name.toLowerCase() === name.toLowerCase()
-        );
-        if (nameInContacts) {
-            alert(`${name} is already in contacts`);
-            return;
-        }
-        const contact = { id: nanoid(), name, number };
-        this.props.onSubmit(contact);
+function PhonebookForm({ onSubmit }) {
+    function handleSubmit(values, { resetForm }) {
+        onSubmit(values);
         resetForm();
-    };
-    render() {
-        return (<div>
+    }
+  
+
+    return (
+        <>
             <Formik
-                initialValues={{ name: '', number: '' }} onSubmit={this.handleSubmit}>
+                initialValues={{ initialValues }} onSubmit={handleSubmit}>
                 <Form>
                     <FormInput>Name
                         <Field
@@ -41,11 +35,13 @@ export class PhonebookForm extends Component {
                     <FormBtn type='submit'>Add contact</FormBtn>
                 </Form>
             </Formik>
-        </div>
-        )
-    }
+        </>
+    )
+
 }
 PhonebookForm.propTypes = {
-  onSubmit: propTypes.func.isRequired,
-  contacts: propTypes.arrayOf(propTypes.object).isRequired,
+    onSubmit: propTypes.func.isRequired,
 };
+
+export default PhonebookForm;
+

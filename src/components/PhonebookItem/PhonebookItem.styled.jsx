@@ -4,7 +4,6 @@ export const PhoneItem = styled.li`
 display:flex;
 justify-content:space-between;
  align-items: center;
-
   &:not(:last-child) {
     margin-bottom: 10px;
   }
@@ -29,7 +28,6 @@ export const DeleteBtn = styled.button`
   color: white;
   cursor: pointer;
  
-
   &:hover{
   background-color: rgba(23, 26, 32, 1);
   cursor: pointer;

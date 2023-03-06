@@ -2,7 +2,7 @@ import propTypes from 'prop-types';
 import { FormInput } from 'components/PhonebookForm/Phonebook.styled';
 import { FilterBox, FilterInput } from './PhonebookFilter.styled';
 
-export const PhonebookFilter = ({ filter, onFilter }) => {
+export const PhonebookFilter = ({ value, onChange }) => {
     return (
         <FilterBox>
             <FormInput htmlFor='filter'>Find contacts by name</FormInput>
@@ -10,8 +10,8 @@ export const PhonebookFilter = ({ filter, onFilter }) => {
                 <FilterInput
                             type="text"
                             name="filter"
-                            value = {filter}
-                            onChange = {onFilter}
+                            value = {value}
+                            onChange = {onChange}
                           /></div>
                         
         </FilterBox>
@@ -19,6 +19,6 @@ export const PhonebookFilter = ({ filter, onFilter }) => {
 }
 
 PhonebookFilter.propTypes = {
-    onFilter: propTypes.func.isRequired,
-    filter: propTypes.string.isRequired,
-}
+    value: propTypes.string.isRequired,
+    onChange: propTypes.func.isRequired,
+};
